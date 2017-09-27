@@ -1,5 +1,5 @@
 
-// MFCApplication2Dlg.cpp : ÊµÏÖÎÄ¼ş
+// MFCApplication2Dlg.cpp : å®ç°æ–‡ä»¶
 //
 
 #include "stdafx.h"
@@ -26,7 +26,7 @@ using namespace libxl;
 #endif
 
 
-// ÓÃÓÚÓ¦ÓÃ³ÌĞò¡°¹ØÓÚ¡±²Ëµ¥ÏîµÄ CAboutDlg ¶Ô»°¿ò
+// ç”¨äºåº”ç”¨ç¨‹åºâ€œå…³äºâ€èœå•é¡¹çš„ CAboutDlg å¯¹è¯æ¡†
 
 LPCWSTR stringToLPCWSTR(std::string orig)
 {
@@ -53,15 +53,15 @@ class CAboutDlg : public CDialogEx
 public:
 	CAboutDlg();
 
-// ¶Ô»°¿òÊı¾İ
+// å¯¹è¯æ¡†æ•°æ®
 #ifdef AFX_DESIGN_TIME
 	enum { IDD = IDD_ABOUTBOX };
 #endif
 
 	protected:
-	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV Ö§³Ö
+	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV æ”¯æŒ
 
-// ÊµÏÖ
+// å®ç°
 protected:
 	DECLARE_MESSAGE_MAP()
 };
@@ -74,15 +74,15 @@ static CString Show()
 	BROWSEINFO      sInfo;
 	::ZeroMemory(&sInfo, sizeof(BROWSEINFO));
 	sInfo.pidlRoot = 0;
-	sInfo.lpszTitle = _T("ÇëÑ¡ÔñÒ»¸öÎÄ¼ş¼Ğ£º");
+	sInfo.lpszTitle = _T("è¯·é€‰æ‹©ä¸€ä¸ªæ–‡ä»¶å¤¹ï¼š");
 	sInfo.ulFlags = BIF_DONTGOBELOWDOMAIN | BIF_RETURNONLYFSDIRS | BIF_NEWDIALOGSTYLE | BIF_EDITBOX;
 	sInfo.lpfn = NULL;
 
-	// ÏÔÊ¾ÎÄ¼ş¼ĞÑ¡Ôñ¶Ô»°¿ò  
+	// æ˜¾ç¤ºæ–‡ä»¶å¤¹é€‰æ‹©å¯¹è¯æ¡†  
 	LPITEMIDLIST lpidlBrowse = ::SHBrowseForFolder(&sInfo);
 	if (lpidlBrowse != NULL)
 	{
-		// È¡µÃÎÄ¼ş¼ĞÃû  
+		// å–å¾—æ–‡ä»¶å¤¹å  
 		if (::SHGetPathFromIDList(lpidlBrowse, szFolderPath))
 		{
 			strFolderPath = szFolderPath;
@@ -111,14 +111,14 @@ END_MESSAGE_MAP()
 
 
 
-// CMFCApplication2Dlg ¶Ô»°¿ò
+// CMFCApplication2Dlg å¯¹è¯æ¡†
 
-//½«ÎÄ¼ş¼ĞÏÂµÄËùÓĞµÄÎÄ¼şÃû´æÈëvector
+//å°†æ–‡ä»¶å¤¹ä¸‹çš„æ‰€æœ‰çš„æ–‡ä»¶åå­˜å…¥vector
 void /*CMFCApplication2Dlg::*/getFilesAll(string path, vector<string>& files, vector<string>& names)
 {
-	//ÎÄ¼ş¾ä±ú 
+	//æ–‡ä»¶å¥æŸ„ 
 	long  hFile = 0;
-	//ÎÄ¼şĞÅÏ¢ 
+	//æ–‡ä»¶ä¿¡æ¯ 
 	struct _finddata_t fileinfo;
 	string p;
 	if ((hFile = _findfirst(p.assign(path).append("\\*").c_str(), &fileinfo)) != -1)
@@ -171,15 +171,15 @@ BEGIN_MESSAGE_MAP(CMFCApplication2Dlg, CDialogEx)
 END_MESSAGE_MAP()
 
 
-// CMFCApplication2Dlg ÏûÏ¢´¦Àí³ÌĞò
+// CMFCApplication2Dlg æ¶ˆæ¯å¤„ç†ç¨‹åº
 
 BOOL CMFCApplication2Dlg::OnInitDialog()
 {
 	CDialogEx::OnInitDialog();
 
-	// ½«¡°¹ØÓÚ...¡±²Ëµ¥ÏîÌí¼Óµ½ÏµÍ³²Ëµ¥ÖĞ¡£
+	// å°†â€œå…³äº...â€èœå•é¡¹æ·»åŠ åˆ°ç³»ç»Ÿèœå•ä¸­ã€‚
 
-	// IDM_ABOUTBOX ±ØĞëÔÚÏµÍ³ÃüÁî·¶Î§ÄÚ¡£
+	// IDM_ABOUTBOX å¿…é¡»åœ¨ç³»ç»Ÿå‘½ä»¤èŒƒå›´å†…ã€‚
 	ASSERT((IDM_ABOUTBOX & 0xFFF0) == IDM_ABOUTBOX);
 	ASSERT(IDM_ABOUTBOX < 0xF000);
 
@@ -197,14 +197,14 @@ BOOL CMFCApplication2Dlg::OnInitDialog()
 		}
 	}
 
-	// ÉèÖÃ´Ë¶Ô»°¿òµÄÍ¼±ê¡£  µ±Ó¦ÓÃ³ÌĞòÖ÷´°¿Ú²»ÊÇ¶Ô»°¿òÊ±£¬¿ò¼Ü½«×Ô¶¯
-	//  Ö´ĞĞ´Ë²Ù×÷
-	SetIcon(m_hIcon, TRUE);			// ÉèÖÃ´óÍ¼±ê
-	SetIcon(m_hIcon, FALSE);		// ÉèÖÃĞ¡Í¼±ê
+	// è®¾ç½®æ­¤å¯¹è¯æ¡†çš„å›¾æ ‡ã€‚  å½“åº”ç”¨ç¨‹åºä¸»çª—å£ä¸æ˜¯å¯¹è¯æ¡†æ—¶ï¼Œæ¡†æ¶å°†è‡ªåŠ¨
+	//  æ‰§è¡Œæ­¤æ“ä½œ
+	SetIcon(m_hIcon, TRUE);			// è®¾ç½®å¤§å›¾æ ‡
+	SetIcon(m_hIcon, FALSE);		// è®¾ç½®å°å›¾æ ‡
 
-	// TODO: ÔÚ´ËÌí¼Ó¶îÍâµÄ³õÊ¼»¯´úÂë
+	// TODO: åœ¨æ­¤æ·»åŠ é¢å¤–çš„åˆå§‹åŒ–ä»£ç 
 
-	return TRUE;  // ³ı·Ç½«½¹µãÉèÖÃµ½¿Ø¼ş£¬·ñÔò·µ»Ø TRUE
+	return TRUE;  // é™¤éå°†ç„¦ç‚¹è®¾ç½®åˆ°æ§ä»¶ï¼Œå¦åˆ™è¿”å› TRUE
 }
 
 void CMFCApplication2Dlg::OnSysCommand(UINT nID, LPARAM lParam)
@@ -220,19 +220,19 @@ void CMFCApplication2Dlg::OnSysCommand(UINT nID, LPARAM lParam)
 	}
 }
 
-// Èç¹ûÏò¶Ô»°¿òÌí¼Ó×îĞ¡»¯°´Å¥£¬ÔòĞèÒªÏÂÃæµÄ´úÂë
-//  À´»æÖÆ¸ÃÍ¼±ê¡£  ¶ÔÓÚÊ¹ÓÃÎÄµµ/ÊÓÍ¼Ä£ĞÍµÄ MFC Ó¦ÓÃ³ÌĞò£¬
-//  Õâ½«ÓÉ¿ò¼Ü×Ô¶¯Íê³É¡£
+// å¦‚æœå‘å¯¹è¯æ¡†æ·»åŠ æœ€å°åŒ–æŒ‰é’®ï¼Œåˆ™éœ€è¦ä¸‹é¢çš„ä»£ç 
+//  æ¥ç»˜åˆ¶è¯¥å›¾æ ‡ã€‚  å¯¹äºä½¿ç”¨æ–‡æ¡£/è§†å›¾æ¨¡å‹çš„ MFC åº”ç”¨ç¨‹åºï¼Œ
+//  è¿™å°†ç”±æ¡†æ¶è‡ªåŠ¨å®Œæˆã€‚
 
 void CMFCApplication2Dlg::OnPaint()
 {
 	if (IsIconic())
 	{
-		CPaintDC dc(this); // ÓÃÓÚ»æÖÆµÄÉè±¸ÉÏÏÂÎÄ
+		CPaintDC dc(this); // ç”¨äºç»˜åˆ¶çš„è®¾å¤‡ä¸Šä¸‹æ–‡
 
 		SendMessage(WM_ICONERASEBKGND, reinterpret_cast<WPARAM>(dc.GetSafeHdc()), 0);
 
-		// Ê¹Í¼±êÔÚ¹¤×÷Çø¾ØĞÎÖĞ¾ÓÖĞ
+		// ä½¿å›¾æ ‡åœ¨å·¥ä½œåŒºçŸ©å½¢ä¸­å±…ä¸­
 		int cxIcon = GetSystemMetrics(SM_CXICON);
 		int cyIcon = GetSystemMetrics(SM_CYICON);
 		CRect rect;
@@ -240,7 +240,7 @@ void CMFCApplication2Dlg::OnPaint()
 		int x = (rect.Width() - cxIcon + 1) / 2;
 		int y = (rect.Height() - cyIcon + 1) / 2;
 
-		// »æÖÆÍ¼±ê
+		// ç»˜åˆ¶å›¾æ ‡
 		dc.DrawIcon(x, y, m_hIcon);
 	}
 	else
@@ -249,8 +249,8 @@ void CMFCApplication2Dlg::OnPaint()
 	}
 }
 
-//µ±ÓÃ»§ÍÏ¶¯×îĞ¡»¯´°¿ÚÊ±ÏµÍ³µ÷ÓÃ´Ëº¯ÊıÈ¡µÃ¹â±ê
-//ÏÔÊ¾¡£
+//å½“ç”¨æˆ·æ‹–åŠ¨æœ€å°åŒ–çª—å£æ—¶ç³»ç»Ÿè°ƒç”¨æ­¤å‡½æ•°å–å¾—å…‰æ ‡
+//æ˜¾ç¤ºã€‚
 HCURSOR CMFCApplication2Dlg::OnQueryDragIcon()
 {
 	return static_cast<HCURSOR>(m_hIcon);
@@ -270,21 +270,21 @@ CString CMFCApplication2Dlg::return_path()
 
 void CMFCApplication2Dlg::OnBnClickedOk()
 {
-	// TODO: ÔÚ´ËÌí¼Ó¿Ø¼şÍ¨Öª´¦Àí³ÌĞò´úÂë
+	// TODO: åœ¨æ­¤æ·»åŠ æ§ä»¶é€šçŸ¥å¤„ç†ç¨‹åºä»£ç 
 	CDialogEx::OnOK();
 }
 
 
 void CMFCApplication2Dlg::OnBnClickedCancel()
 {
-	// TODO: ÔÚ´ËÌí¼Ó¿Ø¼şÍ¨Öª´¦Àí³ÌĞò´úÂë
+	// TODO: åœ¨æ­¤æ·»åŠ æ§ä»¶é€šçŸ¥å¤„ç†ç¨‹åºä»£ç 
 	CDialogEx::OnCancel();
 }
 
 
 void CMFCApplication2Dlg::OnBnClickedButton1()
 {
-	// TODO: ÔÚ´ËÌí¼Ó¿Ø¼şÍ¨Öª´¦Àí³ÌĞò´úÂë
+	// TODO: åœ¨æ­¤æ·»åŠ æ§ä»¶é€šçŸ¥å¤„ç†ç¨‹åºä»£ç 
 	CFileDialog dlg(TRUE);
 	if (dlg.DoModal() == IDCANCEL)
 		return;
@@ -303,7 +303,7 @@ void CMFCApplication2Dlg::OnBnClickedButton1()
 	name = m_fileName.TrimRight(cs2);
 	if (!m_file.Open(m_filePath, CFile::modeReadWrite))
 	{
-		AfxMessageBox(_T("ÎŞ·¨´ò¿ªÎÄ¼ş"));
+		AfxMessageBox(_T("æ— æ³•æ‰“å¼€æ–‡ä»¶"));
 		m_fileName.Empty();
 		return;
 	}
@@ -316,19 +316,19 @@ void CMFCApplication2Dlg::OnBnClickedButton1()
 
 void CMFCApplication2Dlg::OnEnChangeEdit1()
 {
-	// TODO:  Èç¹û¸Ã¿Ø¼şÊÇ RICHEDIT ¿Ø¼ş£¬Ëü½«²»
-	// ·¢ËÍ´ËÍ¨Öª£¬³ı·ÇÖØĞ´ CDialogEx::OnInitDialog()
-	// º¯Êı²¢µ÷ÓÃ CRichEditCtrl().SetEventMask()£¬
-	// Í¬Ê±½« ENM_CHANGE ±êÖ¾¡°»ò¡±ÔËËãµ½ÑÚÂëÖĞ¡£
+	// TODO:  å¦‚æœè¯¥æ§ä»¶æ˜¯ RICHEDIT æ§ä»¶ï¼Œå®ƒå°†ä¸
+	// å‘é€æ­¤é€šçŸ¥ï¼Œé™¤éé‡å†™ CDialogEx::OnInitDialog()
+	// å‡½æ•°å¹¶è°ƒç”¨ CRichEditCtrl().SetEventMask()ï¼Œ
+	// åŒæ—¶å°† ENM_CHANGE æ ‡å¿—â€œæˆ–â€è¿ç®—åˆ°æ©ç ä¸­ã€‚
 
-	// TODO:  ÔÚ´ËÌí¼Ó¿Ø¼şÍ¨Öª´¦Àí³ÌĞò´úÂë
+	// TODO:  åœ¨æ­¤æ·»åŠ æ§ä»¶é€šçŸ¥å¤„ç†ç¨‹åºä»£ç 
 }
 
 
 
 void CMFCApplication2Dlg::OnBnClickedButton2()
 {
-	// TODO: ÔÚ´ËÌí¼Ó¿Ø¼şÍ¨Öª´¦Àí³ÌĞò´úÂë
+	// TODO: åœ¨æ­¤æ·»åŠ æ§ä»¶é€šçŸ¥å¤„ç†ç¨‹åºä»£ç 
 	//SetDlgItemTextW(IDC_EDIT2, path);
 	try
 	{
@@ -350,9 +350,9 @@ void CMFCApplication2Dlg::OnBnClickedButton2()
 			string fen = rx.read_fen();
 			int result = rx.read_result();
 			string result_type = rx.read_resulttype();
-			/*if (result_type == "¶ÏÏß" || result_type == "¾ÖÊ±" || result_type == "²½Ê±" || result_type == "ÅĞ¸º" || result_type == "ÅĞºÍ" || result_type == "ÈÏ¸º" || result_type == "ÒéºÍ")
+			/*if (result_type == "æ–­çº¿" || result_type == "å±€æ—¶" || result_type == "æ­¥æ—¶" || result_type == "åˆ¤è´Ÿ" || result_type == "åˆ¤å’Œ" || result_type == "è®¤è´Ÿ" || result_type == "è®®å’Œ")
 				continue;*/
-			if (result_type == "À§±Ğ" || result_type == "¾øÉ±")
+			if (result_type == "å›°æ¯™" || result_type == "ç»æ€")
 			{
 				chessCharacters ca;
 				ca.set_fen(fen);
@@ -365,8 +365,10 @@ void CMFCApplication2Dlg::OnBnClickedButton2()
 				{
 					int i = &(*it_move) - &from_x[0];
 					ca.change_array(from_x[i], from_y[i], to_x[i], to_y[i]);
-					if ((&(*it_move) - &from_x[0]) == /*(from_x.size() - 11)*/ceil(from_x.size() / 2))
+					if ((&(*it_move) - &from_x[0]) == ceil(from_x.size() / 2))
 						break;
+ 					/*if ((&(*it_move) - &from_x[0]) == (from_x.size() - 11))
+						break;*/
 				}
 				int* x = ca.get_point();
 				wholePieces wp(x);
@@ -400,18 +402,18 @@ void CMFCApplication2Dlg::OnBnClickedButton2()
 
 void CMFCApplication2Dlg::OnEnChangeEdit2()
 {
-	// TODO:  Èç¹û¸Ã¿Ø¼şÊÇ RICHEDIT ¿Ø¼ş£¬Ëü½«²»
-	// ·¢ËÍ´ËÍ¨Öª£¬³ı·ÇÖØĞ´ CDialogEx::OnInitDialog()
-	// º¯Êı²¢µ÷ÓÃ CRichEditCtrl().SetEventMask()£¬
-	// Í¬Ê±½« ENM_CHANGE ±êÖ¾¡°»ò¡±ÔËËãµ½ÑÚÂëÖĞ¡£
+	// TODO:  å¦‚æœè¯¥æ§ä»¶æ˜¯ RICHEDIT æ§ä»¶ï¼Œå®ƒå°†ä¸
+	// å‘é€æ­¤é€šçŸ¥ï¼Œé™¤éé‡å†™ CDialogEx::OnInitDialog()
+	// å‡½æ•°å¹¶è°ƒç”¨ CRichEditCtrl().SetEventMask()ï¼Œ
+	// åŒæ—¶å°† ENM_CHANGE æ ‡å¿—â€œæˆ–â€è¿ç®—åˆ°æ©ç ä¸­ã€‚
 
-	// TODO:  ÔÚ´ËÌí¼Ó¿Ø¼şÍ¨Öª´¦Àí³ÌĞò´úÂë
+	// TODO:  åœ¨æ­¤æ·»åŠ æ§ä»¶é€šçŸ¥å¤„ç†ç¨‹åºä»£ç 
 }
 
 
 void CMFCApplication2Dlg::OnBnClickedButton3()
 {
-	// TODO: ÔÚ´ËÌí¼Ó¿Ø¼şÍ¨Öª´¦Àí³ÌĞò´úÂë
+	// TODO: åœ¨æ­¤æ·»åŠ æ§ä»¶é€šçŸ¥å¤„ç†ç¨‹åºä»£ç 
 	CString dir = Show();
 	string g = "\\";
 	CString gang = CA2T(g.c_str());
@@ -423,7 +425,7 @@ void CMFCApplication2Dlg::OnBnClickedButton3()
 
 void CMFCApplication2Dlg::OnBnClickedButton4()
 {
-	// TODO: ÔÚ´ËÌí¼Ó¿Ø¼şÍ¨Öª´¦Àí³ÌĞò´úÂë
+	// TODO: åœ¨æ­¤æ·»åŠ æ§ä»¶é€šçŸ¥å¤„ç†ç¨‹åºä»£ç 
 	CString dirs = Show();
 	vector<string> files;
 	vector<string> names;
@@ -440,18 +442,18 @@ void CMFCApplication2Dlg::OnBnClickedButton4()
 
 void CMFCApplication2Dlg::OnEnChangeEdit3()
 {
-	// TODO:  Èç¹û¸Ã¿Ø¼şÊÇ RICHEDIT ¿Ø¼ş£¬Ëü½«²»
-	// ·¢ËÍ´ËÍ¨Öª£¬³ı·ÇÖØĞ´ CDialogEx::OnInitDialog()
-	// º¯Êı²¢µ÷ÓÃ CRichEditCtrl().SetEventMask()£¬
-	// Í¬Ê±½« ENM_CHANGE ±êÖ¾¡°»ò¡±ÔËËãµ½ÑÚÂëÖĞ¡£
+	// TODO:  å¦‚æœè¯¥æ§ä»¶æ˜¯ RICHEDIT æ§ä»¶ï¼Œå®ƒå°†ä¸
+	// å‘é€æ­¤é€šçŸ¥ï¼Œé™¤éé‡å†™ CDialogEx::OnInitDialog()
+	// å‡½æ•°å¹¶è°ƒç”¨ CRichEditCtrl().SetEventMask()ï¼Œ
+	// åŒæ—¶å°† ENM_CHANGE æ ‡å¿—â€œæˆ–â€è¿ç®—åˆ°æ©ç ä¸­ã€‚
 
-	// TODO:  ÔÚ´ËÌí¼Ó¿Ø¼şÍ¨Öª´¦Àí³ÌĞò´úÂë
+	// TODO:  åœ¨æ­¤æ·»åŠ æ§ä»¶é€šçŸ¥å¤„ç†ç¨‹åºä»£ç 
 }
 
 
 void CMFCApplication2Dlg::OnNMCustomdrawProgress1(NMHDR *pNMHDR, LRESULT *pResult)
 {
 	LPNMCUSTOMDRAW pNMCD = reinterpret_cast<LPNMCUSTOMDRAW>(pNMHDR);
-	// TODO: ÔÚ´ËÌí¼Ó¿Ø¼şÍ¨Öª´¦Àí³ÌĞò´úÂë
+	// TODO: åœ¨æ­¤æ·»åŠ æ§ä»¶é€šçŸ¥å¤„ç†ç¨‹åºä»£ç 
 	*pResult = 0;
 }
