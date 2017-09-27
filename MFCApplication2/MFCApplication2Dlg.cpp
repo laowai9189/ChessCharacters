@@ -365,10 +365,10 @@ void CMFCApplication2Dlg::OnBnClickedButton2()
 				{
 					int i = &(*it_move) - &from_x[0];
 					ca.change_array(from_x[i], from_y[i], to_x[i], to_y[i]);
-					if ((&(*it_move) - &from_x[0]) == ceil(from_x.size() / 2))
+					if ((&(*it_move) - &from_x[0]) == ceil(from_x.size() / 2))	//提取中局的局面
 						break;
  					/*if ((&(*it_move) - &from_x[0]) == (from_x.size() - 11))
-						break;*/
+						break;*/	//提取残局的局面
 				}
 				int* x = ca.get_point();
 				wholePieces wp(x);
