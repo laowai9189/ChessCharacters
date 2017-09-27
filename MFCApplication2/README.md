@@ -20,3 +20,5 @@ MFCApplication2Dlg.cpp的368到371行，可以按照中局和残局进行调整
 建议使用Visual Studio 2015，打开MFCApplication2.sln文件，以Debug x86编译和运行，便可以出现程序窗口
 ## 说明5：
 运行后产生的两个Excel文件，在MFCApplication2文件夹下
+## 说明6：
+棋谱文件链接: https://pan.baidu.com/s/1i4YKAVz 密码: 4syt
