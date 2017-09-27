@@ -15,4 +15,8 @@ toExcel.h和toExcel.cpp
 ## 说明2：
 MFCApplication2Dlg.cpp的368到371行，可以按照中局和残局进行调整
 ## 说明3：
+运行前，请先将“请先将我解压缩到当前文件夹.rar”解压缩到和MFCApplication2.sln文件的同一个文件夹
+## 说明4：
 建议使用Visual Studio 2015，打开MFCApplication2.sln文件，以Debug x86编译和运行，便可以出现程序窗口
+## 说明5：
+运行后产生的两个Excel文件，在MFCApplication2文件夹下
